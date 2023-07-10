@@ -4,7 +4,8 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(include)
 
-set(Headers    
+set(Headers
+    include/lox.hpp    
 )
 
 set(Sources
@@ -12,8 +13,7 @@ set(Sources
 )
 
 add_executable(loxpp ${Sources} ${Headers})
-
-
+target_compile_options(loxpp PUBLIC -Wzero-as-null-pointer-constant)
 
 
 
