@@ -3,17 +3,20 @@
 
 
 namespace lox::interpreter {
-    using string = const std::string&;
+    
 class Lox {
-    public:
+    private:
         static void run_file(const std::string& path);
         static void run_prompt();
         static void run(const std::string& source);
         static void error(int line, const std::string& message);
-        static void report(int line, string where, string message);
-
+        static void report(int line, const std::string& where, const std::string& message);
+        static bool had_error;
+    public:
+        void init(int argc, char** argv);
 };
-    static bool had_error = false;
+bool Lox::had_error = false;
+    
 }
 
 

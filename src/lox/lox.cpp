@@ -47,7 +47,7 @@ void Lox::run_file(const std::string& path) {
     buffer << file.rdbuf();
     std::string content = buffer.str();
     run(content);
-    if(had_error)
+    if(Lox::had_error)
         exit(EXIT_FAILURE);
   } else {
     throw std::runtime_error("Failed to open file: " + path);
@@ -65,19 +65,19 @@ void Lox::run_prompt() {
         if (line.empty()) break;
     }
     run(line);
-    had_error = false;
+    Lox::had_error = false;
 }
 
-void Lox::error(int line, string message) {
+void Lox::error(int line, const std::string& message) {
     report(line, "", message);
 }
 
-void Lox::report(int line, string where, string message) {
+void Lox::report(int line, const std::string& where, const std::string& message) {
     std::cerr << "[line " << line << "] Error" << where << ": " << message << std::endl;
-    had_error = true;
+    Lox::had_error = true;
 }
 
-int main(int argc, char** argv) {
+void Lox::init(int argc, char** argv) {
     Lox lox;
     if(argc > 2) {
         std::cout << ("Usage: loxpp [script]");
@@ -86,6 +86,12 @@ int main(int argc, char** argv) {
     } else {
         lox.run_prompt();
     }
+}
+
+int main(int argc, char** argv) {
+   Lox lox;
+   lox.init(argc,  argv);
+   return 0;
 }
 
 
