@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <memory>
 
 #include "lox.hpp"
 
@@ -78,13 +79,12 @@ void Lox::report(int line, const std::string& where, const std::string& message)
 }
 
 void Lox::init(int argc, char** argv) {
-    Lox lox;
     if(argc > 2) {
         std::cout << ("Usage: loxpp [script]");
     } else if(argc == 2) {
-        lox.run_file(argv[1]);
+        run_file(argv[1]);
     } else {
-        lox.run_prompt();
+        run_prompt();
     }
 }
 
