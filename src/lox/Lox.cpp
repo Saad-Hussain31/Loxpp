@@ -4,14 +4,30 @@
 #include <sstream>
 #include <vector>
 #include <memory>
+#include <ta-lib/ta_libc.h>
 
-#include "lox.hpp"
+
+#include "Lox.hpp"
+#include "TokenType.hpp"
 
 using namespace lox::interpreter;
 
 namespace {
-    struct Token {
+    class Token {
+        public:
         std::string lexeme;
+        TokenType type;
+        const void* literal;
+        int line;
+
+        Token() = default;
+        Token(TokenType type, const std::string& lexeme,
+        const void* literal, int line) : 
+        type(type), lexeme(lexeme), literal(literal), line(line) {}
+
+        std::string to_string() const {
+            return ""; //TODO
+        }
     };
 
     std::vector<Token> scan_tokens(const std::string& source) {
@@ -20,7 +36,8 @@ namespace {
 
         std::string token;
         while (iss >> token) {
-            tokens.push_back(Token{ token });
+            // tokens.push_back(Token{ token });
+            tokens.push_back(Token{ TokenType::UNKNOWN, token, nullptr, 0 });
         }
 
         return tokens;
@@ -56,8 +73,6 @@ void Lox::run_file(const std::string& path) {
 }
 
 
-
-
 void Lox::run_prompt() {
     std::string line;
     for(;;) {
@@ -78,7 +93,7 @@ void Lox::report(int line, const std::string& where, const std::string& message)
     Lox::had_error = true;
 }
 
-void Lox::init(int argc, char** argv) {
+void Lox::init(int argc, char* argv[]) {
     if(argc > 2) {
         std::cout << ("Usage: loxpp [script]");
     } else if(argc == 2) {
@@ -88,7 +103,7 @@ void Lox::init(int argc, char** argv) {
     }
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char* argv[]) {
    Lox lox;
    lox.init(argc,  argv);
    return 0;
