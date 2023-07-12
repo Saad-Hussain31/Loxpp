@@ -4,32 +4,15 @@
 #include <sstream>
 #include <vector>
 #include <memory>
-#include <ta-lib/ta_libc.h>
-
 
 #include "Lox.hpp"
-#include "TokenType.hpp"
+#include "Token.hpp"
 
 using namespace lox::interpreter;
 
 namespace {
-    class Token {
-        public:
-        std::string lexeme;
-        TokenType type;
-        const void* literal;
-        int line;
 
-        Token() = default;
-        Token(TokenType type, const std::string& lexeme,
-        const void* literal, int line) : 
-        type(type), lexeme(lexeme), literal(literal), line(line) {}
-
-        std::string to_string() const {
-            return ""; //TODO
-        }
-    };
-
+//TODO: This needs to be removed and moved to Scanner class.
     std::vector<Token> scan_tokens(const std::string& source) {
         std::vector<Token> tokens;
         std::istringstream iss(source);

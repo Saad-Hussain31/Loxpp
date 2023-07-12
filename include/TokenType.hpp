@@ -1,3 +1,4 @@
+#pragma once
 namespace lox::interpreter {
 
 enum class TokenType {

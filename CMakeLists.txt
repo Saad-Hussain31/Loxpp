@@ -5,11 +5,13 @@ set(CMAKE_CXX_STANDARD 17)
 include_directories(include)
 
 set(Headers
-    include/lox.hpp    
+    include/Lox.hpp
+    include/TokenType.hpp 
+    include/Token.hpp   
 )
 
 set(Sources
-    src/lox/lox.cpp
+    src/lox/Lox.cpp
 )
 
 add_executable(loxpp ${Sources} ${Headers})
