@@ -38,7 +38,7 @@ $ make
 - `Lox.hpp` and `Lox.cpp`: Contains the `Lox` class for running Lox code, error handling, and initialization.
 - `Token.hpp` and `Token.cpp`: Defines the `Token` class representing a token in Lox.
 - `TokenType.hpp`: Declares the `TokenType` enum class representing token types.
-- `main.cpp`: Entry point of the interpreter.
+
 
 ## Dependencies
 

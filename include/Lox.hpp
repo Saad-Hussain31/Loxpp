@@ -2,7 +2,7 @@
 #include <string>
 
 namespace lox::interpreter {
-
+using std::string;
 
 class Lox {
     private:
