@@ -1,22 +1,28 @@
 #pragma once
 #include <string>
+#include "Scanner.hpp"
 
 namespace lox::interpreter {
 using std::string;
 
 class Lox {
+    public:
+        void init(int argc, char** argv);
+
     private:
         static void run_file(const std::string& path);
         static void run_prompt();
         static void run(const std::string& source);
         static void error(int line, const std::string& message);
         static void report(int line, const std::string& where, const std::string& message);
+        
+    private:
+        inline static Scanner scanner;
         inline static bool had_error = false;
-    public:
-        void init(int argc, char** argv);
+
 };
     
-}
+} // end lox::interpreter
 
 
 

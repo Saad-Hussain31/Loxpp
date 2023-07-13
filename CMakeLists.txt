@@ -8,10 +8,12 @@ set(Headers
     include/Lox.hpp
     include/TokenType.hpp 
     include/Token.hpp   
+    include/Scanner.hpp
 )
 
 set(Sources
     src/lox/Lox.cpp
+    src/lox/Scanner.cpp
 )
 
 add_executable(loxpp ${Sources} ${Headers})
