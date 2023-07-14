@@ -6,11 +6,6 @@ namespace lox::interpreter {
 
 class Token {
     public:
-        TokenType type;
-        std::string lexeme;
-        void* literal;
-        int line;
-
         Token(TokenType type, std::string lexeme, void* literal, int line) :
         type(type), lexeme(lexeme), literal(literal), line(line)
         {}
@@ -18,6 +13,11 @@ class Token {
         std::string to_str() {
             return std::to_string(static_cast<int>(type)) + " " + lexeme + " " + *static_cast<std::string*>(literal);
         }
+    public:
+        TokenType type;
+        std::string lexeme;
+        void* literal;
+        int line;
 };
 
 } //end lox::interpreter
