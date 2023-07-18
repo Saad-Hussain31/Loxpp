@@ -8,7 +8,6 @@
 #include "TokenType.hpp"
 
 namespace lox::interpreter {
-class Lox;
 class Scanner {
     public:
         Scanner() = default;
@@ -17,12 +16,13 @@ class Scanner {
 
     private:
         bool is_at_end();
-        void scan_each_token();
+        void scan_tokens(bool flag);
         char advance();
         void add_token(TokenType type);
         void add_token(TokenType type, void* literal);
         bool match(char expected);
-        char peek();
+        char peek(); //look ahead without consuming
+        void string();
 
     private:
         std::string source;

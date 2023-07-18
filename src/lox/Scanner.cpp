@@ -10,17 +10,17 @@ std::vector<Token> Scanner::scan_tokens() {
     while(!is_at_end()) {
         //at the beginning of next lexeme
         start = current;
-        scan_each_token();
+        scan_tokens(false);
     }
     tokens.push_back(Token{TokenType::END_OF_FILE, "", nullptr, line});
     return tokens;
 }
 
 bool Scanner::is_at_end() {
-    return current > source.length();
+    return current > source.size();
 }
 
-void Scanner::scan_each_token() {
+void Scanner::scan_tokens(bool flag) {
     char c = advance();
     switch(c) {
         case '(' : add_token(TokenType::LEFT_PAREN); break;
@@ -50,11 +50,23 @@ void Scanner::scan_each_token() {
         case '/':
             if (match('/')) {
                 // A comment goes until the end of the line.
-                while (peek() != '\n' && !is_at_end()) advance();
+                while (peek() != '\n' && !is_at_end()) 
+                    advance();
             } else {
                 add_token(TokenType::SLASH);
             }
         break; 
+
+        case ' ':
+        case '\r':
+        case '\t':
+            // Ignore whitespace.
+            break;
+        case '\n':
+            line++;
+            break;
+        case '"': string(); break;
+
         default:
             Lox::error(line, "Unexpected character."); //cases like @#^
             break;
@@ -86,4 +98,23 @@ char Scanner::peek() {
     if(is_at_end()) return '\0';
     return source[current];
 }
+
+void Scanner::string() {
+
+    while(peek() != '"' && !is_at_end()) {
+        if(peek() == '\n') line++;
+        advance();
+    } 
+
+    
+    if(is_at_end()) {
+        Lox::error(line, "Unterminated String.");
+    }
+    
+    advance();
+
+    std::string value = source.substr(start + 1, current - 1);
+    add_token(TokenType::STRING, &value); //TODO(Saad): Look out for void ptr casting to string  
+}
+
 
