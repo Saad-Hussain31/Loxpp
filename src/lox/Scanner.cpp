@@ -68,10 +68,13 @@ void Scanner::scan_tokens(bool flag) {
         case '"': string(); break;
 
         default:
-        if(std::isdigit(c)) 
+        if(std::isdigit(c)) {
             number();
-        else 
+        } else if (std::isalpha(c)) {
+            identifier();
+        }else {
             Lox::error(line, "Unexpected character."); //cases like @#^
+        }
         break;
     }
 }
@@ -139,4 +142,10 @@ char Scanner::peek_next() {
     if(current + 1 >= source.size())
         return '\0';
     return source[current+1]; 
+}
+
+void Scanner::identifier() {
+    while(std::isalnum(peek()))
+        advance();
+    add_token(TokenType::IDENTIFIER);
 }

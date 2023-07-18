@@ -26,6 +26,7 @@ class Scanner {
         void string();
         void number();
         char peek_next();
+        void identifier();
 
     private:
         std::string source;
