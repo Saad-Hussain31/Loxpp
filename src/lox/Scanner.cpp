@@ -4,6 +4,7 @@
 
 using namespace lox::interpreter;
 
+
 Scanner::Scanner(std::string source) : source(source) {}
 
 std::vector<Token> Scanner::scan_tokens() {
@@ -88,7 +89,7 @@ void Scanner::add_token(TokenType type) {
 }
 
 void Scanner::add_token(TokenType type, std::any literal) {
-    std::string text = source.substr(start, current);
+    std::string text = source.substr(start, current - start);
     tokens.emplace_back(Token{type, text, literal, line});
 }
 
@@ -119,7 +120,7 @@ void Scanner::string() {
     
     advance();
 
-    std::string value = source.substr(start + 1, current - 1);
+    std::string value = source.substr(start + 1, current - start - 2);
     add_token(TokenType::STRING, value);  
 }
 
@@ -134,7 +135,7 @@ void Scanner::number() {
             advance();
     }
 
-    add_token(TokenType::NUMBER, std::stod(source.substr(start, current)));
+    add_token(TokenType::NUMBER, std::stod(source.substr(start, current - start)));
 
 }
 
@@ -147,5 +148,35 @@ char Scanner::peek_next() {
 void Scanner::identifier() {
     while(std::isalnum(peek()))
         advance();
-    add_token(TokenType::IDENTIFIER);
+
+    std::string text = source.substr(start, current - start);
+    TokenType type = TokenType::IDENTIFIER;
+
+    auto it = keywords.find(text);
+    if (it != keywords.end()) {
+        type = it->second;
+    }
+
+    add_token(type);
+
 }
+
+std::map<std::string, TokenType> Scanner::keywords = {
+    {"and",    TokenType::AND},
+    {"class",  TokenType::CLASS},
+    {"else",   TokenType::ELSE},
+    {"false",  TokenType::FALSE},
+    {"for",    TokenType::FOR},
+    {"fun",    TokenType::FUN},
+    {"if",     TokenType::IF},
+    {"nil",    TokenType::NIL},
+    {"or",     TokenType::OR},
+    {"print",  TokenType::PRINT},
+    {"return", TokenType::RETURN},
+    {"super",  TokenType::SUPER},
+    {"this",   TokenType::THIS},
+    {"true",   TokenType::TRUE},
+    {"var",    TokenType::VAR},
+    {"while",  TokenType::WHILE}
+};
+

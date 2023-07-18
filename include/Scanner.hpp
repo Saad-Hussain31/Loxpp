@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <any>
+#include <map>
 #include "Token.hpp"
 #include "TokenType.hpp"
 
@@ -27,6 +28,7 @@ class Scanner {
         void number();
         char peek_next();
         void identifier();
+        
 
     private:
         std::string source;
@@ -34,6 +36,7 @@ class Scanner {
         int start = 0;
         int current = 0;
         int line = 1;
+        static std::map<std::string, TokenType> keywords;
 };
 } // end lox::interpreter
 
