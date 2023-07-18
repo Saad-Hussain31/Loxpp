@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <any>
 #include "Token.hpp"
 #include "TokenType.hpp"
 
@@ -19,10 +20,13 @@ class Scanner {
         void scan_tokens(bool flag);
         char advance();
         void add_token(TokenType type);
-        void add_token(TokenType type, void* literal);
+        void add_token(TokenType type, std::any literal);
         bool match(char expected);
         char peek(); //look ahead without consuming
         void string();
+        bool is_digit(char c);
+        void number();
+        char peek_next();
 
     private:
         std::string source;
