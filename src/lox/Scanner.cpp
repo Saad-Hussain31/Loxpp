@@ -86,7 +86,7 @@ void Scanner::add_token(TokenType type) {
 
 void Scanner::add_token(TokenType type, std::any literal) {
     std::string text = source.substr(start, current);
-    tokens.emplace_back(type, text, literal, line);
+    tokens.emplace_back(Token{type, text, literal, line});
 }
 
 bool Scanner::match(char expected) {
@@ -117,7 +117,7 @@ void Scanner::string() {
     advance();
 
     std::string value = source.substr(start + 1, current - 1);
-    add_token(TokenType::STRING, value); //TODO(Saad): Look out for void ptr casting to string  
+    add_token(TokenType::STRING, value);  
 }
 
 bool Scanner::is_digit(char c) {
