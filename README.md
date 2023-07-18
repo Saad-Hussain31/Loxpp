@@ -13,6 +13,10 @@ The Loxpp interpreter is an implementation of the Lox programming language. Lox 
 ## Usage
 
 1. Clone the repository and navigate to the project directory.
+```
+git clone git@github.com:Saad-Hussain31/Loxpp.git
+```
+
 2. Build the interpreter:
 
 ```shell
@@ -23,7 +27,7 @@ $ make
 
 ```
 
-1. Run the Loxpp interpreter:
+3. Run the Loxpp interpreter:
 
 - Run a Lox script file:
 
@@ -35,7 +39,7 @@ $ ./loxpp path/to/script.lox
   $ ./loxpp
   ```
 
-2. Enter Lox code in the file or prompt and observe the output.
+4. Enter Lox code in the file or prompt and observe the output.
 
 ## Code Structure
 - `Lox.hpp` and `Lox.cpp`: Contains the Lox class for running Lox code, error handling, and initialization.
