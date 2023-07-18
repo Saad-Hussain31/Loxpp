@@ -25,7 +25,7 @@ $ make
 
 1. Run the Loxpp interpreter:
 
--Run a Lox script file:
+- Run a Lox script file:
 
 ```
 $ ./loxpp path/to/script.lox
