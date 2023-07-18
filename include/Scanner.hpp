@@ -24,7 +24,6 @@ class Scanner {
         bool match(char expected);
         char peek(); //look ahead without consuming
         void string();
-        bool is_digit(char c);
         void number();
         char peek_next();
 

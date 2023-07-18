@@ -68,7 +68,7 @@ void Scanner::scan_tokens(bool flag) {
         case '"': string(); break;
 
         default:
-        if(is_digit(c)) 
+        if(std::isdigit(c)) 
             number();
         else 
             Lox::error(line, "Unexpected character."); //cases like @#^
@@ -120,17 +120,14 @@ void Scanner::string() {
     add_token(TokenType::STRING, value);  
 }
 
-bool Scanner::is_digit(char c) {
-    return c >= '0' && c <= '9'; 
-}
 
 void Scanner::number() {
     
-    while(is_digit(peek())) 
+    while(std::isdigit(peek())) 
         advance();
 
-    if(peek() == '.' && is_digit(peek_next())) {
-        while(is_digit(peek())) 
+    if(peek() == '.' && std::isdigit(peek_next())) {
+        while(std::isdigit(peek())) 
             advance();
     }
 
