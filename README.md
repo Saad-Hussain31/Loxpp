@@ -1,3 +1,4 @@
+
 # Loxpp Interpreter
 
 The Loxpp interpreter is an implementation of the Lox programming language. Lox is a dynamically-typed, interpreted language designed for educational purposes and is described in the book "Crafting Interpreters" by Bob Nystrom.
@@ -14,30 +15,33 @@ The Loxpp interpreter is an implementation of the Lox programming language. Lox 
 1. Clone the repository and navigate to the project directory.
 2. Build the interpreter:
 
-```
+```shell
 $ mkdir build
 $ cd build
 $ cmake ..
 $ make
+
 ```
 
+1. Run the Loxpp interpreter:
 
-3. Run the Loxpp interpreter:
-- Run a Lox script file:
-  ```
-  $ ./loxpp path/to/script.lox
-  ```
+-Run a Lox script file:
+
+```
+$ ./loxpp path/to/script.lox
+```
 - Start an interactive Lox prompt:
   ```
   $ ./loxpp
   ```
-4. Enter Lox code in the file or prompt and observe the output.
+
+2. Enter Lox code in the file or prompt and observe the output.
 
 ## Code Structure
-
-- `Lox.hpp` and `Lox.cpp`: Contains the `Lox` class for running Lox code, error handling, and initialization.
-- `Token.hpp` and `Token.cpp`: Defines the `Token` class representing a token in Lox.
-- `TokenType.hpp`: Declares the `TokenType` enum class representing token types.
+- `Lox.hpp` and `Lox.cpp`: Contains the Lox class for running Lox code, error handling, and initialization.
+- `Scanner.hpp` and `Scanner.cpp`: Defines the Scanner class responsible for lexical analysis (scanning) of Lox source code.
+- `Token.hpp` and `Token.cpp`: Defines the Token class representing a token in Lox.
+- `TokenType.hpp`: Declares the TokenType enum class representing token types.
 
 
 ## Dependencies
@@ -45,9 +49,6 @@ $ make
 - C++17 compatible compiler
 - CMake (version 3.10 or higher)
 
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
 
 ## Contributions
 
