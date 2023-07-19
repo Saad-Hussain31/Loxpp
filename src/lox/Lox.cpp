@@ -6,10 +6,12 @@
 #include <memory>
 #include "Lox.hpp"
 #include "Token.hpp"
+#include "Scanner.hpp"
 
 using namespace lox::interpreter;
 
 void Lox::run(const std::string& source) {
+    static Scanner scanner(source);
     std::vector<Token> tokens = scanner.scan_tokens();
     for(const Token& token : tokens) {
         std::cout << token.lexeme << "\n";

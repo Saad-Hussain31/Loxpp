@@ -1,7 +1,6 @@
 #ifndef LOX_H
 #define LOX_H
 #include <string>
-#include "Scanner.hpp"
 
 namespace lox::interpreter {
 using std::string;
@@ -18,7 +17,6 @@ class Lox {
         static void report(int line, const std::string& where, const std::string& message);
         
     private:
-        inline static Scanner scanner;
         inline static bool had_error = false;
 
 };
