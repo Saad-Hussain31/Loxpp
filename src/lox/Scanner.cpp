@@ -11,7 +11,7 @@ std::vector<Token> Scanner::scan_tokens() {
     while(!is_at_end()) {
         //at the beginning of next lexeme
         start = current;
-        scan_tokens(false);
+        scan_token();
     }
     tokens.emplace_back(Token{TokenType::END_OF_FILE, "", nullptr, line});
     return tokens;
@@ -21,7 +21,7 @@ bool Scanner::is_at_end() {
     return current > source.size();
 }
 
-void Scanner::scan_tokens(bool flag) {
+void Scanner::scan_token() {
     char c = advance();
     switch(c) {
         case '(' : add_token(TokenType::LEFT_PAREN); break;

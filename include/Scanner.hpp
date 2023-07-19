@@ -18,7 +18,7 @@ class Scanner {
 
     private:
         bool is_at_end();
-        void scan_tokens(bool flag);
+        void scan_token();
         char advance();
         void add_token(TokenType type);
         void add_token(TokenType type, std::any literal);
