@@ -53,9 +53,9 @@ void Scanner::scan_token() {
                 // A comment goes until the end of the line.
                 while (peek() != '\n' && !is_at_end()) 
                     advance();
-            } else {
-                add_token(TokenType::SLASH);
-            }
+            } else if(match('*')) {
+                block_comment();
+            } 
         break; 
 
         case ' ':
@@ -137,6 +137,22 @@ void Scanner::number() {
 
     add_token(TokenType::NUMBER, std::stod(source.substr(start, current - start)));
 
+}
+
+void Scanner::block_comment() {
+    if(peek() != '\n') {
+        while(peek_next() != '*')
+            advance();
+    }
+    line++;
+
+    if (is_at_end()) {
+        Lox::error(line, "Unterminated block comment.");
+    } else {
+        // Consume the closing '*/'.
+        advance(); // '*'
+        advance(); // '/'
+    }
 }
 
 char Scanner::peek_next() {

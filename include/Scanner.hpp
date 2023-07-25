@@ -115,6 +115,11 @@ private:
      */
     void identifier();
 
+    /**
+    * @brief Scans a c-style block comment token in the source code.
+    */
+    void block_comment();
+
 private:
     std::string source;             /**< The source code to be scanned. */
     std::vector<Token> tokens;      /**< Vector to store the scanned tokens. */
