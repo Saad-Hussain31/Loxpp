@@ -11,7 +11,7 @@
 #include <string>
 #include <vector>
 #include <any>
-#include <map>
+#include <unordered_map>
 #include "Token.hpp"
 #include "TokenType.hpp"
 
@@ -126,7 +126,7 @@ private:
     int start = 0;                  /**< Index of the beginning of the current lexeme. */
     int current = 0;                /**< Index of the current character being processed. */
     int line = 1;                   /**< Current line number in the source code. */
-    static std::map<std::string, TokenType> keywords; /**< Map of reserved keywords and their corresponding token types. */
+    std::unordered_map<std::string, TokenType> keywords; /**< Map of reserved keywords and their corresponding token types. */
 };
 
 } // end lox::interpreter
