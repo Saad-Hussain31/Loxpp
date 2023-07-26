@@ -55,7 +55,8 @@ void Scanner::scan_token() {
                     advance();
             } else if(match('*')) {
                 block_comment();
-            } 
+            } else
+                add_token(TokenType::SLASH); 
         break; 
 
         case ' ':
@@ -140,11 +141,12 @@ void Scanner::number() {
 }
 
 void Scanner::block_comment() {
-    if(peek() != '\n') {
-        while(peek_next() != '*')
-            advance();
+    while (peek() != '*' || peek_next() != '/' && !is_at_end()) {
+        if (peek() == '\n') {
+            line++;
+        }
+        advance();
     }
-    line++;
 
     if (is_at_end()) {
         Lox::error(line, "Unterminated block comment.");
