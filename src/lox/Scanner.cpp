@@ -69,9 +69,7 @@ void Scanner::scan_token() {
 
         case '/':
             if (match('/')) {
-                // A comment goes until the end of the line.
-                while (peek() != '\n' && !is_at_end()) 
-                    advance();
+                comment();
             } else if(match('*')) {
                 block_comment();
             } else
@@ -157,6 +155,12 @@ void Scanner::number() {
 
     add_token(TokenType::NUMBER, std::stod(source.substr(start, current - start)));
 
+}
+
+void Scanner::comment() {
+    // A comment goes until the end of the line.
+    while (peek() != '\n' && !is_at_end()) 
+        advance();
 }
 
 void Scanner::block_comment() {
