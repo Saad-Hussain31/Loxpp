@@ -23,9 +23,9 @@ namespace lox::interpreter {
 class Scanner {
 public:
     /**
-     * @brief Default constructor for the Scanner class.
+     * @brief Default constructor for the Scanner class is deleted to prevent it's use.
      */
-    Scanner() = default;
+    Scanner() = delete;
 
     /**
      * @brief Parameterized constructor for the Scanner class.
