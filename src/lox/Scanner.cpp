@@ -37,7 +37,7 @@ std::vector<Token> Scanner::scan_tokens() {
 }
 
 bool Scanner::is_at_end() {
-    return current > source.size();
+    return current >= source.size();
 }
 
 void Scanner::scan_token() {
