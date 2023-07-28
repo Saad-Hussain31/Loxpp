@@ -1,3 +1,12 @@
+/**
+ * @file Lox.cpp
+ * @brief Implements the entry point for the Loxpp project.
+ *
+ * This file is part of Loxpp, a Lox language compiler project.
+ *
+ * @author Saad Hussain
+ * @date 10-07-2023
+ */
 
 #include <iostream>
 #include <fstream>
