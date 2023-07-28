@@ -1,5 +1,5 @@
-#include "Lox.hpp"
-#include "Scanner.hpp"
+#include "lox/Lox.hpp"
+#include "lox/Scanner.hpp"
 
 
 using namespace lox::interpreter;

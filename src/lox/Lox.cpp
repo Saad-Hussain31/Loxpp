@@ -4,9 +4,9 @@
 #include <sstream>
 #include <vector>
 #include <memory>
-#include "Lox.hpp"
-#include "Token.hpp"
-#include "Scanner.hpp"
+#include "lox/Lox.hpp"
+#include "lox/Token.hpp"
+#include "lox/Scanner.hpp"
 
 using namespace lox::interpreter;
 
