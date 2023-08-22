@@ -35,6 +35,7 @@ public:
      */
     void define_ast(const std::string& output_dir, const std::string& base_name, const std::vector<std::string>& types);
 
+
     /**
      * @brief Defines a specific AST class and writes it to the output file.
      * @param writer The output file stream.
@@ -43,6 +44,8 @@ public:
      * @param field_list The list of fields for the current AST class.
      */
     void define_type(std::ofstream& writer, const std::string& base_name, const std::string& class_name, const std::string& field_list);
+
+    void define_visitor(std::ofstream& writer, const std::string& base_name, const std::vector<std::string>& types );
 };
 
 } //end util::interpreter

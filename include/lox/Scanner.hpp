@@ -47,7 +47,7 @@ private:
      *
      * @return bool True if the scanner has reached the end, false otherwise.
      */
-    bool is_at_end();
+    [[nodiscard]] bool is_at_end();
 
     /**
      * @brief Scans the next token in the source code.
@@ -59,7 +59,7 @@ private:
      *
      * @return char The next character in the source code.
      */
-    char advance();
+    [[nodiscard]] char advance();
 
     /**
      * @brief Adds a token with the given type to the tokens vector.
@@ -84,14 +84,14 @@ private:
      * @param expected The character to be matched against the current character.
      * @return bool True if the characters match, false otherwise.
      */
-    bool match(char expected);
+    [[nodiscard]] bool match(char expected);
 
     /**
      * @brief Returns the next character in the source code without consuming it.
      *
      * @return char The next character in the source code.
      */
-    char peek();
+    [[nodiscard]] char peek();
 
     /**
      * @brief Scans a string token in the source code.
@@ -108,7 +108,7 @@ private:
      *
      * @return char The character after the current character in the source code.
      */
-    char peek_next();
+    [[nodiscard]] char peek_next();
 
     /**
      * @brief Scans an identifier token in the source code.
